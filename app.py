@@ -208,7 +208,7 @@ elif position >= 18:
 else:
     season_status = "Mid Table"
 
-col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
+col1, col2, col3, col4, col5, col6, col7, col8 = st.columns(8)
 
 col1.metric("Position", position)
 col2.metric("Matches", matches_played)
@@ -217,6 +217,7 @@ col4.metric("Win Rate", f"{win_rate}%")
 col5.metric("Goals Scored", goals_for)
 col6.metric("Goals Conceded", goals_against)
 col7.metric("Goal Difference", goal_difference)
+col8.metric("Season Outcome", season_status)
 
 st.divider()
 
@@ -383,6 +384,10 @@ if not history_df.empty:
     title=f"{team} Points by Season"
 )
 
+    points_fig.update_layout(
+    xaxis_tickangle=-45
+)
+
     st.plotly_chart(points_fig, use_container_width=True)
 
     history_fig = px.line(
@@ -391,6 +396,10 @@ if not history_df.empty:
         y="Position",
         markers=True,
         title=f"League Finish by Season"
+    )
+
+    history_fig.update_layout(
+    xaxis_tickangle=--45
     )
 
     history_fig.update_yaxes(
@@ -534,7 +543,18 @@ league_table = build_league_table(df, teams)
 position = league_table.loc[
     league_table["Team"] == team,
     "Pos"
-].iloc[0]             
+].iloc[0]          
+
+if position == 1:
+    season_status = "🏆 Champions"
+elif position <= 4:
+    season_status = "⭐ Champions League"
+elif position <= 6:
+    season_status = "🌍 European Places"
+elif position >= 18:
+    season_status = "⬇️ Relegated"
+else:
+    season_status = "⚽ Mid Table"
 
 def highlight_team(row):
 
@@ -605,4 +625,7 @@ with st.expander(f"View {team} Match History"):
         use_container_width=True
     )
 
-    st.caption("Data source: Football-Data.co.uk match result CSVs")
+
+    st.divider()
+
+    st.caption("Premier League Dashboard | Built with Python, Pandas, Plotly and Streamlit |Data source: Football-Data.co.uk match result CSVs")
