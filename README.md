@@ -23,7 +23,7 @@ The goal of this project was to strengthen my skills in:
 
 The dashboard provides an interactive overview of team performance, including league position, points, goals scored, win rate, season outcome and visual performance breakdowns.
 
-![Dashboard Overview](screenshots/dashboard-overview.png)
+![Dashboard Overview](screenshots/premier-league-dashboard.png)
 
 
 ---
@@ -69,7 +69,7 @@ Generate league tables directly from match data with:
 
 League standings are generated dynamically from match results and include visual highlighting for Champions League qualification places and the selected team.
 
-![League Standings](screenshots/league-standings.png)
+![League Standings](screenshots/league-standing.png)
 
 
 ### ⚽ Match & Form Analysis
