@@ -44,14 +44,26 @@ df["AwayTeam"] = df["AwayTeam"].astype(str)
 teams = sorted(set(df["HomeTeam"]).union(set(df["AwayTeam"])))
 
 TEAM_BADGES = {
-    "Man City": "Manchester_city.png",
-    "Man United": "Manchester_United.png",
-    "Crystal Palace": "Crystal_Palace.png",
-    "Nott'm Forest": "Nottingham_forest.png",
-    "Spurs": "Tottenham.png",
-    "Newcastle": "Newcastle.png",
-    "West Ham": "West_ham.png",
-    "Wolves": "Wolves.png",
+    "Arsenal": "arsenal.png",
+    "Chelsea": "chelsea.png",
+    "Aston Villa": "aston_villa.png",
+    "Bournemouth": "bournemouth.png",
+    "Brentford": "brentford.png",
+    "Brighton": "brighton.png",
+    "Burnley": "burnley.png",
+    "Everton": "everton.png",
+    "Fulham": "fulham.png",
+    "Liverpool": "liverpool.png",
+    "Leeds": "leeds.png",
+    "Sunderland": "sunderland.png",
+    "Man City": "manchester_city.png",
+    "Man United": "manchester_united.png",
+    "Crystal Palace": "crystal_palace.png",
+    "Nott'm Forest": "nottingham_forest.png",
+    "Spurs": "tottenham.png",
+    "Newcastle": "newcastle.png",
+    "West Ham": "west_ham.png",
+    "Wolves": "wolves.png",
 }
 
 def build_league_table(matches_data, teams_list):
@@ -129,13 +141,13 @@ st.caption(f"Season: {season}")
 st.sidebar.header("Filters")
 team = st.sidebar.selectbox("Choose a team", teams)
 
-sidebar_badge_file = TEAM_BADGES.get(team, f"{team}.png")
+sidebar_badge_file = TEAM_BADGES.get(
+    team,
+    f"{team.lower().replace(' ', '_')}.png"
+)
 sidebar_badge_path = f"assets/{sidebar_badge_file}"
 
-try:
-    st.sidebar.image(sidebar_badge_path, width=120)
-except:
-    pass
+st.sidebar.image(sidebar_badge_path, width=120)
 
 team_matches = df[
     (df["HomeTeam"] == team) | (df["AwayTeam"] == team)
@@ -176,7 +188,10 @@ points = wins * 3 + draws
 
 st.divider()
 
-badge_file = TEAM_BADGES.get(team, f"{team}.png")
+badge_file = TEAM_BADGES.get(
+    team,
+    f"{team.lower().replace(' ', '_')}.png"
+)
 badge_path = f"assets/{badge_file}"
 
 left, right = st.columns([1, 6])
@@ -399,7 +414,7 @@ if not history_df.empty:
     )
 
     history_fig.update_layout(
-    xaxis_tickangle=--45
+    xaxis_tickangle=-45
     )
 
     history_fig.update_yaxes(
