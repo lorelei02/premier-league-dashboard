@@ -4,6 +4,10 @@
 ![Plotly](https://img.shields.io/badge/Plotly-Visualisation-orange)
 ![Streamlit](https://img.shields.io/badge/Streamlit-Web%20App-red)
 
+## Live Demo
+
+🔗 https://YOUR-APP-URL.streamlit.app
+
 As a lifelong football fan and aspiring data analyst, I wanted to build a project that combined my interest in football with data analysis and software development.
 
 This dashboard analyses Premier League performance from the inaugural 1993/94 season through to the 2025/26 season. Users can explore team performance, league standings, historical trends, club history and season statistics through an interactive web application built entirely in Python.
